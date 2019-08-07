@@ -7,13 +7,22 @@ const User = require('../models/User')
 
 
 router.post('/books',(req,res,next)=>{
+    console.log('book:',req.body)
     Book.create({
-        name: req.body.name,
-        year: req.body.year,
+        bookName: req.body.bookName,
+        donationDate: req.body.donationDate,
+        bookAuthor: req.body.bookAuthor,
+        editorial: req.body.editorial,
+        studentName: req.body.studentName,
+        studentId: req.body.studentId,
+        studentCareer: req.body.studentCareer,
+        period: req.body.period,
+        title: req.body.title,
         description: req.body.description,
         user: req.body.user
     })
         .then(response => {
+            console.log('book created',response)
             User.findByIdAndUpdate(req.body.user,{$push:{books:response._id}})
                 .then(response => res.json(response))
 
@@ -22,8 +31,12 @@ router.post('/books',(req,res,next)=>{
 })
 
 router.get('/books',(req,res,next)=>{
+    console.log('running post')
     Book.find()
-        .then(response => res.json(response))
+        .then(response =>{
+            console.log(response)
+            res.json(response)
+        })
         .catch(e => res.json(e))
 })
 

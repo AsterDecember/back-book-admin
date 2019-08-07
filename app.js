@@ -71,10 +71,9 @@ app.use(cors({
   origin: ['http://localhost:3001']
 }))
 
-const index = require('./routes/index');
-app.use('/', index);
+
 const authRoutes = require('./routes/auth')
-app.use('/api',authRoutes)
+app.use('/auth',authRoutes)
 const bookRoutes = require('./routes/books')
 app.use('/api',bookRoutes)
 

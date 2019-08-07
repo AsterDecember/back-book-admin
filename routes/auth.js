@@ -14,13 +14,23 @@ router.post('/signup',(req,res,next)=>{
         .catch(e => res.status(500).json(e))
 })
 router.post('/login',(req,res,next)=>{
+    console.log('data post login:',req.body)
+    //let user = req.body
+
     passport.authenticate('local',(err,user,info)=>{
         if(err) return res.status(500).json(info)
-        if(!user) return res.status(404).json(info)
+        if(!user) {
+            console.log('qeberga paso??Z!',user)
+            console.log('info:',info)
+            console.log('qeberga err??Z!',err)
+            return res.status(404).json(info)
+        }
         req.login(user,(err)=>{
             return res.status(200).json(user)
         })
     })(req,res,next)
+
+
 
 })
 
