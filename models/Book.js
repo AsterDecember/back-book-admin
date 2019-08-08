@@ -2,17 +2,15 @@ const moongoose = require ('mongoose')
 const Schema = moongoose.Schema
 
 const bookSchema = new Schema({
-        name: String,
         year: Number,
-        bookName: String,
-        donationDate: Date,
+        title: String,
         bookAuthor: String,
         editorial: String,
-        studentName: String,
         studentId: String,
+        studentName: String,
         studentCareer: String,
         period: String,
-        title: String,
+        donationDate: Date,
         description: String,
         author:
             {
